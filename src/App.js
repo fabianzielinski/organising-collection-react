@@ -4,10 +4,12 @@ import "./App.css";
 import TableDisplay from "./TableDisplay";
 import DataInput from "./DataInput";
 import DragDropFile from "./DragDropFile";
+import FormSearch from "./FormSearch";
 
 function App() {
   const [data, setData] = useState([]);
   const [cols, setCols] = useState([]);
+  const [searchText, setSearchText] = useState([]);
 
   const handleFile = (file) => {
     const reader = new FileReader();
@@ -19,6 +21,7 @@ function App() {
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
       setData(data);
       setCols(make_cols(ws["!ref"]));
+      console.log(data);
     };
     reader.readAsArrayBuffer(file);
   };
@@ -34,9 +37,20 @@ function App() {
   const make_cols = (refstr) => {
     let o = [],
       C = XLSX.utils.decode_range(refstr).e.c + 1;
-    for (var i = 0; i < C; ++i)
+    for (let i = 0; i < C; ++i)
       o[i] = { name: XLSX.utils.encode_col(i), key: i };
     return o;
+  };
+
+  const handleChangeSearch = (e) => {
+    const searchText = e.target.value.toLowerCase();
+    console.log(searchText);
+    console.log(data);
+    const itemList = data.filter((item) =>
+      item.toString().toLowerCase().includes(searchText)
+    );
+    setData(itemList);
+    setSearchText(searchText);
   };
 
   return (
@@ -55,6 +69,11 @@ function App() {
           >
             Export
           </button>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-12">
+          <FormSearch change={handleChangeSearch} serchText={searchText} />
         </div>
       </div>
       <div className="row">
