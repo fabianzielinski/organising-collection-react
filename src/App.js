@@ -8,8 +8,9 @@ import FormSearch from "./FormSearch";
 
 function App() {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState(data);
   const [cols, setCols] = useState([]);
-  const [searchText, setSearchText] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   const handleFile = (file) => {
     const reader = new FileReader();
@@ -20,6 +21,7 @@ function App() {
       const ws = wb.Sheets[wsname];
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
       setData(data);
+      setFilteredData(data);
       setCols(make_cols(ws["!ref"]));
       console.log(data);
     };
@@ -44,13 +46,13 @@ function App() {
 
   const handleChangeSearch = (e) => {
     const searchText = e.target.value.toLowerCase();
+    setSearchText(searchText);
     console.log(searchText);
     console.log(data);
     const itemList = data.filter((item) =>
       item.toString().toLowerCase().includes(searchText)
     );
-    setData(itemList);
-    setSearchText(searchText);
+    setFilteredData(itemList);
   };
 
   return (
@@ -69,6 +71,9 @@ function App() {
           >
             Export
           </button>
+          <button className="btn btn-success">
+            <a href="">Clean</a>
+          </button>
         </div>
       </div>
       <div className="row">
@@ -78,7 +83,7 @@ function App() {
       </div>
       <div className="row">
         <div className="col-xs-12">
-          <TableDisplay data={data} cols={cols} />
+          <TableDisplay data={filteredData} cols={cols} />
         </div>
       </div>
     </DragDropFile>
