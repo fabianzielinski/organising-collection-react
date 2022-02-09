@@ -10,6 +10,7 @@ function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
   const [cols, setCols] = useState([]);
+  const [tableHeader, setTableHeader] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   const handleFile = (file) => {
@@ -20,19 +21,19 @@ function App() {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      const headerdata = data[0];
       setData(data);
       setFilteredData(data);
+      setTableHeader(headerdata);
       setCols(make_cols(ws["!ref"]));
-      console.log(data);
     };
     reader.readAsArrayBuffer(file);
   };
 
   const exportFile = () => {
-    const ws = XLSX.utils.aoa_to_sheet(data);
+    const ws = XLSX.utils.aoa_to_sheet(filteredData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
-
     XLSX.writeFile(wb, "sheetjs.xlsx");
   };
 
@@ -47,8 +48,8 @@ function App() {
   const handleChangeSearch = (e) => {
     const searchText = e.target.value.toLowerCase();
     setSearchText(searchText);
-    console.log(searchText);
-    console.log(data);
+    // console.log(searchText);
+    // console.log(data);
     const itemList = data.filter((item) =>
       item.toString().toLowerCase().includes(searchText)
     );
@@ -71,8 +72,11 @@ function App() {
           >
             Export
           </button>
-          <button className="btn btn-success">
-            <a href="">Clean</a>
+          <button
+            className="btn btn-success"
+            onClick={() => window.location.reload()}
+          >
+            Clean
           </button>
         </div>
       </div>
@@ -83,7 +87,11 @@ function App() {
       </div>
       <div className="row">
         <div className="col-xs-12">
-          <TableDisplay data={filteredData} cols={cols} />
+          <TableDisplay
+            data={filteredData}
+            cols={cols}
+            tableHeader={tableHeader}
+          />
         </div>
       </div>
     </DragDropFile>

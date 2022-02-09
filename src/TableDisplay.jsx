@@ -1,24 +1,28 @@
 import React from "react";
 
-function TableDisplay({ data, cols }) {
+function TableDisplay({ data, cols, tableHeader }) {
   return (
     <div className="">
       <table className="">
         <thead>
-          <tr>
-            {cols.map((c) => (
-              <th key={c.key}>{c.name}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((r, i) => (
-            <tr key={i}>
+          {tableHeader !== data[0] ? (
+            <tr>
               {cols.map((c) => (
-                <td key={c.key}>{r[c.key]}</td>
+                <td key={c.key}>{tableHeader[c.key]}</td>
               ))}
             </tr>
-          ))}
+          ) : null}
+        </thead>
+        <tbody>
+          {data.map((r, i) =>
+            r !== 0 ? (
+              <tr key={i}>
+                {cols.map((c) => (
+                  <td key={c.key}>{r[c.key]}</td>
+                ))}
+              </tr>
+            ) : null
+          )}
         </tbody>
       </table>
     </div>
