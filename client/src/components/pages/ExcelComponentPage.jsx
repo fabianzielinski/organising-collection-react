@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import XLSX from "xlsx";
 import TableDisplay from "../common/TableDisplay";
+// import MobileTableDisplay from "../common/MobileTableDisplay";
 import DataInput from "../features/DataInput";
 import DragDropFile from "../common/DragDropFile";
 import FormSearch from "../features/FormSearch";
