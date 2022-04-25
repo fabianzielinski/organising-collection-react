@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import XLSX from "xlsx";
 import TableDisplay from "../common/TableDisplay";
-// import MobileTableDisplay from "../common/MobileTableDisplay";
+import MobileTableDisplay from "../common/MobileTableDisplay";
 import DataInput from "../features/DataInput";
 import DragDropFile from "../common/DragDropFile";
 import FormSearch from "../features/FormSearch";
@@ -22,9 +22,12 @@ function ExcelComponentPage() {
       const ws = wb.Sheets[wsname];
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
       const headerdata = data[0];
-      setData(data);
+      setData(data.shift());
+      console.log(data);
       setFilteredData(data);
+      console.log(filteredData);
       setTableHeader(headerdata);
+      console.log(headerdata);
       setCols(make_cols(ws["!ref"]));
     };
     reader.readAsArrayBuffer(file);
@@ -42,18 +45,13 @@ function ExcelComponentPage() {
       C = XLSX.utils.decode_range(refstr).e.c + 1;
     for (let i = 0; i < C; ++i)
       o[i] = { name: XLSX.utils.encode_col(i), key: i };
+    // console.log(o);
     return o;
   };
 
   const handleChangeSearch = (e) => {
     const searchText = e.target.value.toLowerCase();
     setSearchText(searchText);
-    // console.log(searchText);
-    // console.log(data);
-    const itemList = data.filter((item) =>
-      item.toString().toLowerCase().includes(searchText)
-    );
-    setFilteredData(itemList);
   };
 
   return (
@@ -91,6 +89,7 @@ function ExcelComponentPage() {
             data={filteredData}
             cols={cols}
             tableHeader={tableHeader}
+            searchText={searchText}
           />
         </div>
       </div>

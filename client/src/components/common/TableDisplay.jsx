@@ -1,6 +1,6 @@
 import React from "react";
 
-function TableDisplay({ data, cols, tableHeader }) {
+function TableDisplay({ data, cols, tableHeader, searchText }) {
   return (
     <div className="">
       <table className="">
@@ -14,15 +14,19 @@ function TableDisplay({ data, cols, tableHeader }) {
           ) : null}
         </thead>
         <tbody>
-          {data.map((r, i) =>
-            r !== null ? (
-              <tr key={i}>
-                {cols.map((c) => (
-                  <td key={c.key}>{r[c.key]}</td>
-                ))}
-              </tr>
-            ) : null
-          )}
+          {data
+            .filter((item) =>
+              item.toString().toLowerCase().includes(searchText)
+            )
+            .map((r, i) =>
+              r !== null ? (
+                <tr key={i}>
+                  {cols.map((c) => (
+                    <td key={c.key}>{r[c.key]}</td>
+                  ))}
+                </tr>
+              ) : null
+            )}
         </tbody>
       </table>
     </div>
