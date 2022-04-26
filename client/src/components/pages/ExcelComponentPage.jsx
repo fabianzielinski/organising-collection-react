@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import XLSX from "xlsx";
 import TableDisplay from "../common/TableDisplay";
 import MobileTableDisplay from "../common/MobileTableDisplay";
@@ -12,6 +12,14 @@ function ExcelComponentPage() {
   const [cols, setCols] = useState([]);
   const [tableHeader, setTableHeader] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+    return () => {
+      window.removeEventListener("resize", () => setWidth(window.innerWidth));
+    };
+  }, []);
 
   const handleFile = (file) => {
     const reader = new FileReader();
@@ -23,11 +31,11 @@ function ExcelComponentPage() {
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
       const headerdata = data[0];
       setData(data.shift());
-      console.log(data);
+      // console.log(data);
       setFilteredData(data);
-      console.log(filteredData);
+      // console.log(filteredData);
       setTableHeader(headerdata);
-      console.log(headerdata);
+      // console.log(headerdata);
       setCols(make_cols(ws["!ref"]));
     };
     reader.readAsArrayBuffer(file);
@@ -85,12 +93,21 @@ function ExcelComponentPage() {
       </div>
       <div className="row">
         <div className="col-xs-12">
-          <TableDisplay
-            data={filteredData}
-            cols={cols}
-            tableHeader={tableHeader}
-            searchText={searchText}
-          />
+          {window.innerWidth > 600 ? (
+            <TableDisplay
+              data={filteredData}
+              cols={cols}
+              tableHeader={tableHeader}
+              searchText={searchText}
+            />
+          ) : (
+            <MobileTableDisplay
+              data={filteredData}
+              cols={cols}
+              tableHeader={tableHeader}
+              searchText={searchText}
+            />
+          )}
         </div>
       </div>
     </DragDropFile>
