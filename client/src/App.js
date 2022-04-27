@@ -1,6 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import "./styles/App.css";
+import { Routes, Route, NavLink, Link } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayot";
 
 import NotFound from "./components/pages/NotFoundPage";
@@ -15,6 +14,8 @@ const App = () => {
         <Route path="/excelcomponentpage" element={<ExcelComponentPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Link to={"/"}>Home</Link>
+      <NavLink to={"/excelcomponentpage"}>To excel</NavLink>
     </MainLayout>
   );
 };
