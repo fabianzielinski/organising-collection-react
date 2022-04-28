@@ -28,7 +28,10 @@ function ExcelComponentPage() {
       const wb = XLSX.read(ab, { type: "array" });
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
-      const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      const data = XLSX.utils.sheet_to_json(ws, {
+        header: 1,
+        blankrows: false,
+      });
       const headerdata = data[0];
       setData(data.shift());
       // console.log(data);
@@ -91,7 +94,7 @@ function ExcelComponentPage() {
           <FormSearch change={handleChangeSearch} serchText={searchText} />
         </div>
       </div>
-      <div className="row">
+      <div className="row DisplayWindow">
         <div className="col-xs-12">
           {window.innerWidth > 600 ? (
             <TableDisplay

@@ -1,0 +1,20 @@
+.MainLayout {
+  .AppDisplay {
+    // width: 100%;
+    // height: auto;
+    max-height: 80%;
+    padding: 1vh;
+  }
+  button {
+    padding: 2vh;
+    margin: 1vh;
+    border-radius: 8%;
+    border: none;
+    background-color: transparent;
+    box-shadow: 5px 5px 5px lightgrey;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}

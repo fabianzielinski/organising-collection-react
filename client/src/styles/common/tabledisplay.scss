@@ -1,0 +1,13 @@
+.Display {
+  &__Table {
+    text-align: center;
+    thead {
+      font-weight: bold;
+    }
+    tbody {
+      td {
+        border: black 1px solid;
+      }
+    }
+  }
+}

@@ -2,8 +2,10 @@
 @import "normalize";
 
 // @import "variables";
-// @import "layout";
+@import "layout/layout";
 // @import "typography";
 
 @import "app";
 @import "pages/excelcomponentpage";
+@import "common/mobiletabledisplay.scss";
+@import "common/tabledisplay.scss";

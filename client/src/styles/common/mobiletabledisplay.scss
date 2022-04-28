@@ -1,0 +1,24 @@
+.MobileDisplay {
+  &__Table {
+    text-align: center;
+    &__Record {
+      border: lightgray 1px solid;
+      margin-bottom: 4vw;
+      // background-color: aqua;
+      // min-width: 100%;
+      border-radius: 3%;
+      box-shadow: 5px 5px 5px lightgrey;
+
+      tr {
+        // border-bottom: 1px solid gray;
+        min-width: 100%;
+        td {
+          // border: black 1px solid;
+          border-bottom: 1px solid lightgray;
+          text-align: center;
+          // width: 100%;
+        }
+      }
+    }
+  }
+}
