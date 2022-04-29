@@ -1,6 +1,8 @@
 .Display {
   &__Table {
     text-align: center;
+    box-shadow: 5px 5px 5px lightgrey;
+    border: 0.5px solid lightgray;
     thead {
       font-weight: bold;
     }

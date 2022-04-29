@@ -21,10 +21,10 @@ const App = () => {
         <button>Home</button>
       </Link>
       <Link to={"/excelcomponentpage"}>
-        <button>To Excel </button>
+        <button>Excel </button>
       </Link>
       <Link to={"/excelcomponentpage"}>
-        <button>To Base</button>
+        <button>Base</button>
       </Link>
     </MainLayout>
   );
