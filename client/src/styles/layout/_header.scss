@@ -1,0 +1,9 @@
+.Header {
+  //   justify-content: space-between;
+  &__Row {
+    align-items: center;
+    .Log {
+      text-align: end;
+    }
+  }
+}

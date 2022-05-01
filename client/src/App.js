@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayot";
 
 import NotFound from "./components/pages/NotFoundPage";
@@ -17,7 +17,7 @@ const App = () => {
         </Routes>
       </div>
 
-      <Link to={"/"}>
+      {/* <Link to={"/"}>
         <button>Home</button>
       </Link>
       <Link to={"/excelcomponentpage"}>
@@ -25,7 +25,7 @@ const App = () => {
       </Link>
       <Link to={"/excelcomponentpage"}>
         <button>Base</button>
-      </Link>
+      </Link> */}
     </MainLayout>
   );
 };
