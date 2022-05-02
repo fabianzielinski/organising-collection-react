@@ -5,6 +5,7 @@ import MobileTableDisplay from "../common/MobileTableDisplay";
 import DataInput from "../features/DataInput";
 import DragDropFile from "../common/DragDropFile";
 import FormSearch from "../features/FormSearch";
+import Button from "../features/Button";
 
 function ExcelComponentPage() {
   const [data, setData] = useState([]);
@@ -66,36 +67,38 @@ function ExcelComponentPage() {
   };
 
   return (
-    <DragDropFile handleFile={handleFile}>
+    <DragDropFile handleFile={handleFile} className="container">
       <div className="row">
-        <div className="col-xs-12">
+        <div className="col-sm-12">
           <DataInput handleFile={handleFile} />
         </div>
       </div>
       <div className="row">
-        <div className="col-xs-12">
-          <button
+        <div className="col-sm-12">
+          <Button
             disabled={!data.length}
             className="btn btn-success"
             onClick={exportFile}
           >
             Export
-          </button>
-          <button
+          </Button>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm-9">
+          <FormSearch change={handleChangeSearch} serchText={searchText} />
+        </div>
+        <div className="col-sm-3">
+          <Button
             className="btn btn-success"
             onClick={() => window.location.reload()}
           >
             Clean
-          </button>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-xs-12">
-          <FormSearch change={handleChangeSearch} serchText={searchText} />
+          </Button>
         </div>
       </div>
       <div className="row DisplayWindow">
-        <div className="col-xs-12">
+        <div className="col-sm-12">
           {window.innerWidth > 600 ? (
             <TableDisplay
               data={filteredData}

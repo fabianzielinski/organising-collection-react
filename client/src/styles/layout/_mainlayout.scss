@@ -1,21 +1,10 @@
 .MainLayout {
+  padding: 2vh;
+  max-height: 100vh;
   .AppDisplay {
     // width: 100%;
-    // height: auto;
-    max-height: 80%;
+    // height: 100%;
+    max-height: 70%;
     padding: 1vh;
-  }
-  button {
-    padding: 2vh;
-    margin: 1vh;
-    border-radius: 20%;
-    // border: none;
-    border: 0.5px solid lightgray;
-    background-color: transparent;
-    box-shadow: 5px 5px 5px lightgrey;
-
-    a {
-      text-decoration: none;
-    }
   }
 }

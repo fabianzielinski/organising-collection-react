@@ -1,0 +1,17 @@
+button {
+  padding: 2vh;
+  margin: 1vh;
+  border-radius: 20%;
+  // border: none;
+  border: 0.5px solid lightgray;
+  background-color: transparent;
+  box-shadow: 5px 5px 5px lightgrey;
+  font-weight: bold;
+  color: rgb(84, 84, 84);
+  &:active {
+    transform: scale(0.8);
+  }
+  a {
+    text-decoration: none;
+  }
+}

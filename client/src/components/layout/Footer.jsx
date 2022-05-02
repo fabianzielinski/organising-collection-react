@@ -9,7 +9,7 @@ const Footer = () => {
         <Link to={"/"} className="col-sm-4">
           <Button>{"Home"}</Button>
         </Link>
-        <Link to={"/excelcomponentpage"} className="col-sm-4">
+        <Link to={"/importpage"} className="col-sm-4">
           <Button>{"Import"}</Button>
         </Link>
         <Link to={"/excelcomponentpage"} className="col-sm-4">
