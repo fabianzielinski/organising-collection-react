@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useState } from "@hookstate/core";
 import XLSX from "xlsx";
 import TableDisplay from "../common/TableDisplay";
 import MobileTableDisplay from "../common/MobileTableDisplay";
@@ -6,19 +7,22 @@ import DataInput from "../features/DataInput";
 import DragDropFile from "../common/DragDropFile";
 import FormSearch from "../features/FormSearch";
 import Button from "../features/Button";
+import globalstore from "../../Store";
 
 function ExcelComponentPage() {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState(data);
-  const [cols, setCols] = useState([]);
-  const [tableHeader, setTableHeader] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [width, setWidth] = useState(window.innerWidth);
+  const store = useState(globalstore);
 
   useEffect(() => {
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
+    const handleResize = () => {
+      store.width.set(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
     return () => {
-      window.removeEventListener("resize", () => setWidth(window.innerWidth));
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -33,20 +37,21 @@ function ExcelComponentPage() {
         header: 1,
         blankrows: false,
       });
+      // console.log(store);
       const headerdata = data[0];
-      setData(data.shift());
-      // console.log(data);
-      setFilteredData(data);
-      // console.log(filteredData);
-      setTableHeader(headerdata);
-      // console.log(headerdata);
-      setCols(make_cols(ws["!ref"]));
+      store.data.set(data.shift());
+      // console.log(store.data.get());
+      store.filteredData.set(data);
+      // console.log(store.filteredData.get());
+      store.tableHeader.set(headerdata);
+      // console.log(store.tableHeader.get());
+      store.cols.set(make_cols(ws["!ref"]));
     };
     reader.readAsArrayBuffer(file);
   };
 
   const exportFile = () => {
-    const ws = XLSX.utils.aoa_to_sheet(filteredData);
+    const ws = XLSX.utils.aoa_to_sheet(store.filteredData.get());
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
     XLSX.writeFile(wb, "sheetjs.xlsx");
@@ -63,7 +68,11 @@ function ExcelComponentPage() {
 
   const handleChangeSearch = (e) => {
     const searchText = e.target.value.toLowerCase();
-    setSearchText(searchText);
+    store.searchText.set(searchText);
+    searchText !== ""
+      ? store.exportbuttondistabled.set(!!false)
+      : store.exportbuttondistabled.set(!!true);
+    console.log(store.exportbuttondistabled.get());
   };
 
   return (
@@ -73,27 +82,31 @@ function ExcelComponentPage() {
           <DataInput handleFile={handleFile} />
         </div>
       </div>
-      <div className="row">
+      {/* <div className="row">
         <div className="col-sm-12">
           <Button
-            disabled={!data.length}
+            // disabled={!data.length}
+            // disabled={store.data.length}
             className="btn btn-success"
             onClick={exportFile}
           >
             Export
           </Button>
         </div>
-      </div>
+      </div> */}
       <div className="row">
         <div className="col-sm-9">
-          <FormSearch change={handleChangeSearch} serchText={searchText} />
+          <FormSearch
+            change={handleChangeSearch}
+            searchText={store.searchText.get()}
+          />
         </div>
         <div className="col-sm-3">
           <Button
             className="btn btn-success"
             onClick={() => window.location.reload()}
           >
-            Clean
+            Reset
           </Button>
         </div>
       </div>
@@ -101,17 +114,17 @@ function ExcelComponentPage() {
         <div className="col-sm-12">
           {window.innerWidth > 600 ? (
             <TableDisplay
-              data={filteredData}
-              cols={cols}
-              tableHeader={tableHeader}
-              searchText={searchText}
+              data={store.filteredData.get()}
+              cols={store.cols.get()}
+              tableHeader={store.tableHeader.get()}
+              searchText={store.searchText.get()}
             />
           ) : (
             <MobileTableDisplay
-              data={filteredData}
-              cols={cols}
-              tableHeader={tableHeader}
-              searchText={searchText}
+              data={store.filteredData.get()}
+              cols={store.cols.get()}
+              tableHeader={store.tableHeader.get()}
+              searchText={store.searchText.get()}
             />
           )}
         </div>
