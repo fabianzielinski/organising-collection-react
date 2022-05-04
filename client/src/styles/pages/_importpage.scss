@@ -1,0 +1,16 @@
+.Import__Page {
+  min-height: 65vh;
+  align-items: center;
+  &__Row {
+    align-items: center;
+    text-align: center;
+    margin: 25vh 0;
+    a {
+      button {
+        padding-left: 15vw;
+        padding-right: 15vw;
+        border-radius: 5%;
+      }
+    }
+  }
+}

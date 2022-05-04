@@ -1,9 +1,7 @@
-table {
-  tbody {
-    // color: red;
-    border: 2px solid #282c34;
-    tr {
-      border: black 2px solid;
-    }
-  }
+.DisplayWindow {
+  max-height: 60vh;
+  min-height: 50vh;
+  height: 100%;
+  padding: 2%;
+  overflow: auto;
 }

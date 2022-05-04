@@ -1,21 +1,35 @@
 import React from "react";
-import { Routes, Route, NavLink, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayot";
 
 import NotFound from "./components/pages/NotFoundPage";
 import Home from "./components/pages/HomePage";
 import ExcelComponentPage from "./components/pages/ExcelComponentPage";
+import ImportPage from "./components/pages/ImportPage";
+import ExportPage from "./components/pages/ExportPage";
 
 const App = () => {
   return (
     <MainLayout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/excelcomponentpage" element={<ExcelComponentPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Link to={"/"}>Home</Link>
-      <NavLink to={"/excelcomponentpage"}>To excel</NavLink>
+      <div className="AppDisplay">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/excelcomponentpage" element={<ExcelComponentPage />} />
+          <Route path="/importpage" element={<ImportPage />} />
+          <Route path="/exportpage" element={<ExportPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+
+      {/* <Link to={"/"}>
+        <button>Home</button>
+      </Link>
+      <Link to={"/excelcomponentpage"}>
+        <button>Excel </button>
+      </Link>
+      <Link to={"/excelcomponentpage"}>
+        <button>Base</button>
+      </Link> */}
     </MainLayout>
   );
 };

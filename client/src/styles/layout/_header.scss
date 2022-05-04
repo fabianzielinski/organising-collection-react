@@ -1,0 +1,13 @@
+.Header {
+  &__Row {
+    align-items: center;
+    justify-content: space-between;
+
+    .Log {
+      text-align: end;
+      button {
+        border-radius: 50%;
+      }
+    }
+  }
+}
