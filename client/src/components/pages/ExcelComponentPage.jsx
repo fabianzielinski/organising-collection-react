@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "@hookstate/core";
 import XLSX from "xlsx";
 import TableDisplay from "../common/TableDisplay";
@@ -8,23 +8,11 @@ import DragDropFile from "../common/DragDropFile";
 import FormSearch from "../features/FormSearch";
 import Button from "../features/Button";
 import globalstore from "../../Store";
+import useWindowSize from "../common/useWindowSize";
 
 function ExcelComponentPage() {
   const store = useState(globalstore);
-
-  useEffect(() => {
-    const handleResize = () => {
-      store.width.set(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const [height, width] = useWindowSize();
 
   const handleFile = (file) => {
     const reader = new FileReader();
@@ -112,7 +100,7 @@ function ExcelComponentPage() {
       </div>
       <div className="row DisplayWindow">
         <div className="col-sm-12">
-          {window.innerWidth > 600 ? (
+          {width > 600 ? (
             <TableDisplay
               data={store.filteredData.get()}
               cols={store.cols.get()}

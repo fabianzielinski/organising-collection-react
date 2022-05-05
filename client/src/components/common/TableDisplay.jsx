@@ -1,7 +1,7 @@
 import React from "react";
 
 function TableDisplay({ data, cols, tableHeader, searchText }) {
-  console.log(cols);
+  // console.log(cols);
   return (
     <div className="Display">
       <table className="Display__Table">
