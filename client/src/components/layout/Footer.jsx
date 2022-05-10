@@ -16,7 +16,7 @@ const Footer = () => {
         <Link to={"/importpage"} className="col-sm-4">
           <Button>{"Import"}</Button>
         </Link>
-        <Link to={"/exportpage"} className="col-sm-4">
+        <Link to={"/exportpage"} className="col-sm-4" disabled={true}>
           <Button>{"Export"}</Button>
         </Link>
       </div>
