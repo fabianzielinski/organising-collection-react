@@ -7,6 +7,7 @@ import Home from "./components/pages/HomePage";
 import ExcelComponentPage from "./components/pages/ExcelComponentPage";
 import ImportPage from "./components/pages/ImportPage";
 import ExportPage from "./components/pages/ExportPage";
+import ExcelExportPage from "./components/pages/ExcelExportPage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/excelcomponentpage" element={<ExcelComponentPage />} />
           <Route path="/importpage" element={<ImportPage />} />
           <Route path="/exportpage" element={<ExportPage />} />
+          <Route path="/excelexportpage" element={<ExcelExportPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
