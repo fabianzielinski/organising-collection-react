@@ -5,9 +5,8 @@ function useExcelExport(globalstore) {
   const store = useState(globalstore);
 
   const exportFile = () => {
-    console.log(store.filteredData.get());
     if (store.filteredData.get() !== "") {
-      const ws = XLSX.utils.aoa_to_sheet(store.filteredData.get());
+      const ws = XLSX.utils.aoa_to_sheet(store.toExportFiltered.get());
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
       XLSX.writeFile(wb, `${store.fileName.get()}.xlsx`);

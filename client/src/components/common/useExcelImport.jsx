@@ -34,7 +34,6 @@ function useExcelImport(globalstore) {
       C = XLSX.utils.decode_range(refstr).e.c + 1;
     for (let i = 0; i < C; ++i)
       o[i] = { name: XLSX.utils.encode_col(i), key: i };
-    // console.log(o);
     return o;
   };
 

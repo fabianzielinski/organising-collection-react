@@ -4,7 +4,7 @@ const FormNameFile = (props) => {
   return (
     <form action="">
       <label htmlFor="filename">
-        Szukaj :
+        Wpisz nazwe pliku :
         <input
           name="filename"
           type="text"

@@ -12,7 +12,7 @@ import useExcelImport from "../common/useExcelImport";
 
 function ExcelComponentPage() {
   const store = useState(globalstore);
-  const [height, width] = useWindowSize();
+  const [, width] = useWindowSize();
   const [handleFile, handleChangeSearch] = useExcelImport(globalstore);
 
   return (
@@ -40,21 +40,7 @@ function ExcelComponentPage() {
       </div>
       <div className="row DisplayWindow">
         <div className="col-sm-12">
-          {width > 600 ? (
-            <TableDisplay
-              data={store.filteredData.get()}
-              cols={store.cols.get()}
-              tableHeader={store.tableHeader.get()}
-              searchText={store.searchText.get()}
-            />
-          ) : (
-            <MobileTableDisplay
-              data={store.filteredData.get()}
-              cols={store.cols.get()}
-              tableHeader={store.tableHeader.get()}
-              searchText={store.searchText.get()}
-            />
-          )}
+          {width > 600 ? <TableDisplay /> : <MobileTableDisplay />}
         </div>
       </div>
     </DragDropFile>
