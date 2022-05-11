@@ -22,16 +22,6 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-
-      {/* <Link to={"/"}>
-        <button>Home</button>
-      </Link>
-      <Link to={"/excelcomponentpage"}>
-        <button>Excel </button>
-      </Link>
-      <Link to={"/excelcomponentpage"}>
-        <button>Base</button>
-      </Link> */}
     </MainLayout>
   );
 };

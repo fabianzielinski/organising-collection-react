@@ -6,7 +6,8 @@ const globalstore = createState({
   cols: [],
   tableHeader: [],
   searchText: [],
-  fileName: "sheetjs.xlsx",
+  fileName: "sheetjs",
+  toExportFiltered: [],
   exportbuttondistabled: true,
 });
 
