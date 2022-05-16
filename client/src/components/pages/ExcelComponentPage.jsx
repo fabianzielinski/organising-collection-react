@@ -5,7 +5,7 @@ import MobileTableDisplay from "../common/MobileTableDisplay";
 import DataInput from "../features/DataInput";
 import DragDropFile from "../common/DragDropFile";
 import FormSearch from "../features/FormSearch";
-import Button from "../features/Button";
+// import Button from "../features/Button";
 import globalstore from "../../Store";
 import useWindowSize from "../common/useWindowSize";
 import useExcelImport from "../common/useExcelImport";
@@ -22,25 +22,17 @@ function ExcelComponentPage() {
           <DataInput handleFile={handleFile} />
         </div>
       </div>
+      <div className="row DisplayWindow">
+        <div className="col-sm-12">
+          {width > 600 ? <TableDisplay /> : <MobileTableDisplay />}
+        </div>
+      </div>
       <div className="row">
-        <div className="col-sm-9">
+        <div className="col-sm-12">
           <FormSearch
             change={handleChangeSearch}
             searchText={store.searchText.get()}
           />
-        </div>
-        <div className="col-sm-3">
-          <Button
-            className="btn btn-success"
-            onClick={() => window.location.reload()}
-          >
-            Reset
-          </Button>
-        </div>
-      </div>
-      <div className="row DisplayWindow">
-        <div className="col-sm-12">
-          {width > 600 ? <TableDisplay /> : <MobileTableDisplay />}
         </div>
       </div>
     </DragDropFile>

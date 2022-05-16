@@ -4,5 +4,8 @@
   &__Bar {
     justify-content: space-around;
     text-align: center;
+    .Ico {
+      font-size: $ico-fsize;
+    }
   }
 }
