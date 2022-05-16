@@ -1,14 +1,16 @@
 import React from "react";
+import { CgSearch } from "react-icons/cg";
 
 const FormSearch = (props) => {
   return (
-    <form action="">
+    <form action="" className="form-search">
       <label htmlFor="search">
-        Szukaj :
+        <CgSearch className="ico-search" />
         <input
           name="search"
           type="text"
           id="search"
+          placeholder=""
           onChange={props.change}
           value={props.searchText}
         />

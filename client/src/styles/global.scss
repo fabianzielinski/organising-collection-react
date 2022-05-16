@@ -1,7 +1,7 @@
 // var
 @import "normalize";
 
-// @import "variables";
+@import "variables";
 @import "layout/mainlayout";
 // @import "typography";
 
@@ -13,5 +13,6 @@
 @import "pages/importpage";
 @import "pages/exportpage";
 @import "pages/excelcomponentpage";
-@import "common/mobiletabledisplay.scss";
-@import "common/tabledisplay.scss";
+@import "common/mobiletabledisplay";
+@import "common/tabledisplay";
+@import "common/formsearch";

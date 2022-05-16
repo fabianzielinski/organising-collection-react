@@ -8,6 +8,9 @@ button {
   box-shadow: 5px 5px 5px lightgrey;
   font-weight: bold;
   color: rgb(84, 84, 84);
+  .Ico {
+    font-size: $ico-fsize;
+  }
   &:active {
     transform: scale(0.8);
   }
