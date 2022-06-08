@@ -19,9 +19,9 @@ function useExcelImport(globalstore) {
       // console.log(store);
       const headerdata = data[0];
       store.data.set(data.shift());
-      // console.log(store.data.get());
+      console.log(store.data.get());
       store.filteredData.set(data);
-      // console.log(store.filteredData.get());
+      console.log(store.filteredData.get());
       store.tableHeader.set(headerdata);
       // console.log(store.tableHeader.get());
       store.cols.set(make_cols(ws["!ref"]));
