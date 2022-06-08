@@ -1,5 +1,5 @@
 module.exports = {
-  articles: async () => {
+  articles: async (parent, args, { models }) => {
     return await models.Article.find();
   },
   article: async (parent, args, { models }) => {

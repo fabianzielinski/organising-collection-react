@@ -13,11 +13,12 @@ module.exports = gql`
   }
 
   type Query {
-    hello: String
     articles: [Article]
     article(id: ID): Article
   }
   type Mutation {
-    newArticle(title: String!): Article
+    newArticle(title: String!): Article!
+    deleteArticle(id: ID!): Boolean!
+    updateArticle(id: ID!, notes: String!): Article!
   }
 `;
