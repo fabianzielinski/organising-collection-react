@@ -1,27 +1,36 @@
 const express = require("express");
-const cors = require("cors");
-16;
-const app = express();
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.get("/api/posts", (req, res) => {
-  const data = [
-    {
-      id: "1adfasf",
-      title: "Lorem Ipsum",
-      content:
-        "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+const { ApolloServer } = require("apollo-server-express");
+require("dotenv").config();
+
+const db = require("../server/src/db");
+const models = require("../server/src/model");
+const typeDefs = require("../server/src/schema");
+const resolvers = require("../server/src/resolvers");
+
+const port = process.env.PORT || 4000;
+const DB_HOST = process.env.DB_HOST;
+
+async function startApolloServer() {
+  const app = express();
+  // Nawiązanie połączenia z bazą danych.
+  db.connect(DB_HOST);
+  // Konfiguracja serwera Apollo.
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: () => {
+      return { models };
     },
-    {
-      id: "2evxc34",
-      title: "Lorem Ipsum II",
-      content:
-        "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
-    },
-  ];
-  res.json(data);
-});
-app.listen(8000, function () {
-  console.log("Server is running on port:", 8000);
-});
+  });
+  await server.start();
+
+  // Zastosowanie oprogramowania pośredniczącego Apollo GraphQL i zdefiniowanie ścieżki dostępu do /api.
+  server.applyMiddleware({ app, path: "/api" });
+  app.listen({ port }, () =>
+    console.log(
+      `Serwer GraphQL działa pod adresem http://localhost:${port}${server.graphqlPath}`
+    )
+  );
+}
+
+startApolloServer();
