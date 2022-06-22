@@ -18,13 +18,23 @@ module.exports = {
       return false;
     }
   },
-  updateArticle: async (parent, { notes, id }, { models }) => {
+  updateArticle: async (
+    parent,
+    { id, lp, number, date, section, title, authors, notes },
+    { models }
+  ) => {
     return await models.Article.findOneAndUpdate(
       {
         _id: id,
       },
       {
         $set: {
+          lp,
+          number,
+          date,
+          section,
+          title,
+          authors,
           notes,
         },
       },

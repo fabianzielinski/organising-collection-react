@@ -12,7 +12,7 @@ const ImportPage = () => {
             <ImFileExcel className="Ico" />
           </Button>
         </Link>
-        <Link to={"/excelcomponentpage"} className="col-sm-12 col-md-6">
+        <Link to={"/cloudcomponentpage"} className="col-sm-12 col-md-6">
           <Button>
             <ImCloud className="Ico" />
           </Button>
