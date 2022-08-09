@@ -1,9 +1,15 @@
 import React from "react";
+import { useState } from "@hookstate/core";
+import globalstore from "../../Store";
 import { Link } from "react-router-dom";
 import Button from "../features/Button";
 import { ImFileExcel, ImCloud } from "react-icons/im";
 
 const ImportPage = () => {
+  const store = useState(globalstore);
+  store.tableHeader.set([]);
+  store.filteredData.set([]);
+  store.searchText.set([]);
   return (
     <div className="Import__Page container">
       <div className="Import__Page__Row row">

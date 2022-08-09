@@ -12,6 +12,7 @@ import useExcelImport from "../common/useExcelImport";
 
 function ExcelComponentPage() {
   const store = useState(globalstore);
+  // store.filteredData.set([]);
   const [, width] = useWindowSize();
   const [handleFile, handleChangeSearch] = useExcelImport(globalstore);
 
