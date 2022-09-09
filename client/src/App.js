@@ -11,6 +11,7 @@ import CloudComponentPage from "./components/pages/CloudComponentPage";
 import ImportPage from "./components/pages/ImportPage";
 import ExportPage from "./components/pages/ExportPage";
 import ExcelExportPage from "./components/pages/ExcelExportPage";
+import CloudExportPage from "./components/pages/CloudExportPage";
 
 // Konfiguracja adresu URI naszego API i bufora.
 // const uri = process.env.API_URI;
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/importpage" element={<ImportPage />} />
               <Route path="/exportpage" element={<ExportPage />} />
               <Route path="/excelexportpage" element={<ExcelExportPage />} />
+              <Route path="/cloudexportpage" element={<CloudExportPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

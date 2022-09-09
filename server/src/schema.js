@@ -17,7 +17,15 @@ module.exports = gql`
     article(id: ID): Article
   }
   type Mutation {
-    newArticle(title: String!): Article!
+    newArticle(
+      lp: Int
+      number: Int
+      date: Int
+      section: String
+      title: String
+      authors: String
+      notes: String
+    ): Article!
     deleteArticle(id: ID!): Boolean!
     updateArticle(id: ID!, notes: String!): Article!
   }

@@ -13,7 +13,7 @@ const DB_HOST = process.env.DB_HOST;
 
 async function startApolloServer() {
   const app = express();
-  app.use(cors());
+  app.use(cors({}));
   // Nawiązanie połączenia z bazą danych.
   db.connect(DB_HOST);
   // Konfiguracja serwera Apollo.

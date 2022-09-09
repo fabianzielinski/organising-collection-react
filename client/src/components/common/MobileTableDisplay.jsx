@@ -25,6 +25,8 @@ const MobileTableDisplay = () => {
                 </div>
               </div>
             ))}
+            {/* <button>Edit</button>
+            <button>Del</button> */}
           </div>
         ))}
       </div>

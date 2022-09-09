@@ -19,6 +19,12 @@ function TableDisplay() {
               {cols.map((c) => (
                 <td key={c.key}>{r[c.key]}</td>
               ))}
+              {/* <td>
+                <button>Edit</button>
+              </td>
+              <td>
+                <button>Del</button>
+              </td> */}
             </tr>
           ))}
         </tbody>

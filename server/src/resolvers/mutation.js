@@ -1,13 +1,17 @@
 module.exports = {
-  newArticle: async (parent, args, { models }) => {
+  newArticle: async (
+    parent,
+    { lp, number, date, section, title, authors, notes },
+    { models }
+  ) => {
     return await models.Article.create({
-      lp: "1",
-      number: "146",
-      date: "2022",
-      section: "Listy",
-      title: args.title,
-      authors: "Adam Scott",
-      notes: "Tyle",
+      lp: lp,
+      number: number,
+      date: date,
+      section: section,
+      title: title,
+      authors: authors,
+      notes: notes,
     });
   },
   deleteArticle: async (parent, { id }, { models }) => {
