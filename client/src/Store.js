@@ -8,7 +8,8 @@ const globalstore = createState({
   searchText: [],
   fileName: "sheetjs",
   toExportFiltered: [],
-  exportbuttondistabled: true,
+  // exportbuttondistabled: true,
+  numberEditedStore: [],
 });
 
 export default globalstore;
