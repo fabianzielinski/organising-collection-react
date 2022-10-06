@@ -1,16 +1,25 @@
 import React from "react";
 import { useState } from "@hookstate/core";
 import globalstore from "../../Store";
+import Button from "../features/Button";
 
 const FormArticleEdit = (props) => {
   const store = useState(globalstore);
+  const filteredData = store.filteredData.get();
   const numberEditedStore = store.numberEditedStore.get();
+  const numberEditedLine = store.numberEditedLine.get();
 
   const newEditedStore = props.props.filter((item) =>
     item[0].toString().toLowerCase().includes(numberEditedStore)
   );
 
   const [lp, nr, data, dzial, artykol, autor, uwagi] = newEditedStore[0];
+
+  const submitSave = () => {
+    store.filteredData.set(
+      filteredData.splice(numberEditedLine[0], 1, newEditedStore)
+    );
+  };
 
   //.splice(0,1, {})
 
@@ -24,7 +33,7 @@ const FormArticleEdit = (props) => {
               name="lp"
               type="text"
               id="lp"
-              onChange={props.change}
+              onChange={(e) => e.target.newEditedStore.splice(0, 1, lp)}
               defaultValue={lp}
             />
           </label>
@@ -101,6 +110,10 @@ const FormArticleEdit = (props) => {
             />
           </label>
         </div>
+        <Button className="btn btn-success col-sm-2 col-2" onClick={submitSave}>
+          Save
+        </Button>
+        <Button className="btn btn-success col-sm-2 col-2">Cancel</Button>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ const globalstore = createState({
   toExportFiltered: [],
   // exportbuttondistabled: true,
   numberEditedStore: [],
+  numberEditedLine: [],
 });
 
 export default globalstore;

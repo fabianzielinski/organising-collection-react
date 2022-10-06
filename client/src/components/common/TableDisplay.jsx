@@ -26,8 +26,12 @@ function TableDisplay() {
               ))}
               <td key={i + 1}>
                 <Link to={"/articleeditpage"}>
-                  <button onClick={() => store.numberEditedStore.set(r[0])}>
-                    {/* <button onClick={() => store.numberEditedStore.set(i)}> */}
+                  <button
+                    onClick={() => {
+                      store.numberEditedStore.set(r[0]);
+                      store.numberEditedLine.set(i);
+                    }}
+                  >
                     Edit
                   </button>
                 </Link>

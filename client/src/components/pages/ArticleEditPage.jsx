@@ -1,6 +1,6 @@
 import React from "react";
 import FormArticleEdit from "../features/FormArticleEdit";
-import Button from "../features/Button";
+// import Button from "../features/Button";
 import useFilterData from "../../components/common/useFilterData";
 
 const ArticleEditPage = () => {
@@ -11,10 +11,10 @@ const ArticleEditPage = () => {
       <div className="row">
         <FormArticleEdit props={newFilteredData} />
       </div>
-      <div className="row">
+      {/* <div className="row">
         <Button className="btn btn-success col-sm-2 col-2">OK</Button>
         <Button className="btn btn-success col-sm-2 col-2">Cancel</Button>
-      </div>
+      </div> */}
     </div>
   );
 };
