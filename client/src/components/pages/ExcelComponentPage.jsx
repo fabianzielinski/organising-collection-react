@@ -12,6 +12,7 @@ import useExcelImport from "../common/useExcelImport";
 
 function ExcelComponentPage() {
   const store = useState(globalstore);
+  // store.filteredData.set([]);
   const [, width] = useWindowSize();
   const [handleFile, handleChangeSearch] = useExcelImport(globalstore);
 
@@ -28,7 +29,7 @@ function ExcelComponentPage() {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-12">
+        <div className="col-sm-12 col-md-12">
           <FormSearch
             change={handleChangeSearch}
             searchText={store.searchText.get()}

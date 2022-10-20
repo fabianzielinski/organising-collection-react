@@ -25,6 +25,7 @@ function useExcelImport(globalstore) {
       store.tableHeader.set(headerdata);
       // console.log(store.tableHeader.get());
       store.cols.set(make_cols(ws["!ref"]));
+      console.log(store.cols.get());
     };
     reader.readAsArrayBuffer(file);
   };

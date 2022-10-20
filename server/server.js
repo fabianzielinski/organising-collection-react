@@ -1,6 +1,7 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 require("dotenv").config();
+const cors = require("cors");
 
 const db = require("../server/src/db");
 const models = require("../server/src/model");
@@ -12,6 +13,7 @@ const DB_HOST = process.env.DB_HOST;
 
 async function startApolloServer() {
   const app = express();
+  app.use(cors({}));
   // Nawiązanie połączenia z bazą danych.
   db.connect(DB_HOST);
   // Konfiguracja serwera Apollo.

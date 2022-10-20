@@ -3,7 +3,8 @@ import globalstore from "../../Store";
 
 function useFilterData() {
   const store = useState(globalstore);
-  const newFilteredData = store.filteredData
+  console.log(store.filteredData.get());
+  let newFilteredData = store.filteredData
     .get()
     .filter((item) =>
       item.toString().toLowerCase().includes(store.searchText.get())
