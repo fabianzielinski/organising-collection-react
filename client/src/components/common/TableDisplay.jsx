@@ -8,6 +8,9 @@ function TableDisplay() {
   const [newFilteredData, tableHeader, cols] = useFilterData();
   const store = useState(globalstore);
 
+  // console.log(`newFilteredData => ${newFilteredData}`);
+  // console.log(newFilteredData);
+
   return (
     <div className="Display">
       <table className="Display__Table">
@@ -30,6 +33,7 @@ function TableDisplay() {
                     onClick={() => {
                       store.numberEditedStore.set(r[0]);
                       store.numberEditedLine.set(i);
+                      console.log(store.numberEditedLine.get());
                     }}
                   >
                     Edit
