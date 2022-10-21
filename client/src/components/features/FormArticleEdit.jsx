@@ -20,6 +20,8 @@ const FormArticleEdit = (props) => {
 
   const ArrayNewFilteredData = newFilteredData.map((ar) => Object.values(ar));
 
+  console.log(ArrayNewFilteredData);
+
   let newEditedStore = ArrayNewFilteredData.filter((item) =>
     item[0].toString().toLowerCase().includes(numberEditedStore)
   );
@@ -30,9 +32,9 @@ const FormArticleEdit = (props) => {
 
   console.log(newEditedStore[numberEditedLine]);
   console.log(numberEditedLine);
+  console.log(typeof numberEditedLine);
 
-  let [lp, nr, data, dzial, artykol, autor, uwagi] =
-    newEditedStore[numberEditedLine];
+  const [lp, nr, data, dzial, artykol, autor, uwagi] = newEditedStore[0];
 
   console.log(typeof lp);
   console.log(typeof nr);
