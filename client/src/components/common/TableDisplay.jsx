@@ -8,8 +8,22 @@ function TableDisplay() {
   const [newFilteredData, tableHeader, cols] = useFilterData();
   const store = useState(globalstore);
 
+  let isSave = true;
+
   // console.log(`newFilteredData => ${newFilteredData}`);
   // console.log(newFilteredData);
+
+  const newFunctionSet = () => {
+    console.log(newFilteredData);
+    console.log(store.numberEditedLine.get());
+    let newA = [...newFilteredData];
+    // let newA = newFilteredData.slice();
+    console.log(newA);
+    newA.splice(parseInt(store.numberEditedLine.get()), 1);
+    store.filteredData.set(newA);
+    console.log(newA);
+    console.log(store.filteredData.get());
+  };
 
   return (
     <div className="Display">
@@ -33,16 +47,30 @@ function TableDisplay() {
                     onClick={() => {
                       store.numberEditedStore.set(r[0]);
                       store.numberEditedLine.set(i);
-                      console.log(store.numberEditedLine.get());
+                      // console.log(store.numberEditedLine.get());
                     }}
                   >
                     Edit
                   </button>
                 </Link>
               </td>
-              <td key={i + 2}>
-                <button>Del</button>
-              </td>
+              {/* <td key={i + 2}>
+                <Link to={"/excelcomponentpage"}>
+                  <button
+                    onClick={() => {
+                      if (isSave) {
+                        store.numberEditedLine.set(i);
+                        console.log(i);
+                        newFunctionSet();
+                        isSave = false;
+                        return console.log(isSave);
+                      }
+                    }}
+                  >
+                    Del
+                  </button>
+                </Link>
+              </td> */}
             </tr>
           ))}
         </tbody>
