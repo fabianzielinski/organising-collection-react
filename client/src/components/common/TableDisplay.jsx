@@ -16,8 +16,8 @@ function TableDisplay() {
   const newFunctionSet = () => {
     console.log(newFilteredData);
     console.log(store.numberEditedLine.get());
-    // let newA = [...newFilteredData];
-    let newA = newFilteredData.slice();
+    let newA = [...newFilteredData];
+    // let newA = newFilteredData.slice();
     console.log(newA);
     newA.splice(parseInt(store.numberEditedLine.get()), 1);
     store.filteredData.set(newA);
@@ -54,18 +54,23 @@ function TableDisplay() {
                   </button>
                 </Link>
               </td>
-              <td key={i + 2}>
+              {/* <td key={i + 2}>
                 <Link to={"/excelcomponentpage"}>
-                <button
-                  onClick={() => {
-                    if (isSave) newFunctionSet(i);
-                    return (isSave = false);
-                  }}
-                >
-                  Del
-                </button>
+                  <button
+                    onClick={() => {
+                      if (isSave) {
+                        store.numberEditedLine.set(i);
+                        console.log(i);
+                        newFunctionSet();
+                        isSave = false;
+                        return console.log(isSave);
+                      }
+                    }}
+                  >
+                    Del
+                  </button>
                 </Link>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
