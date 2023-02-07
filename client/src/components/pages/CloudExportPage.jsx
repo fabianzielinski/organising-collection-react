@@ -5,6 +5,11 @@ import { useMutation, gql } from "@apollo/client";
 import globalstore from "../../Store";
 // import store from "../../storeimport";
 
+// const DELETE_ARTICLES = gql`
+// mutation  deleteArticles() {
+//   deleteArticles(){}
+// }`;
+
 const ADD_ARTICLES = gql`
   mutation newArticle(
     $lp: Int!
@@ -43,9 +48,11 @@ const CloudExportPage = () => {
   // console.log(`State:`);
   // console.log(state);
 
+  // const [deleteArticles] = useMutation(DELETE_ARTICLES);
   const [addNewArticle] = useMutation(ADD_ARTICLES);
 
   async function exportdates() {
+    // deleteArticles();
     store.filteredData.get().map(async (items) => {
       console.log(`A: ${items}`);
 

@@ -27,6 +27,7 @@ module.exports = gql`
       notes: String
     ): Article!
     deleteArticle(id: ID!): Boolean!
+    deleteArticles: Boolean!
     updateArticle(id: ID!, notes: String!): Article!
   }
 `;

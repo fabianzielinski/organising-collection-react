@@ -22,6 +22,16 @@ module.exports = {
       return false;
     }
   },
+  deleteArticles: async (parent, args, { models }) => {
+    // return await models.Article.remove({});
+    try {
+      await models.Article.remove({ id: id });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  },
+
   updateArticle: async (
     parent,
     { id, lp, number, date, section, title, authors, notes },
